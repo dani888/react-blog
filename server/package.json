@@ -9,7 +9,7 @@
     "start": "nodemon index.js"
   },
   "author": "Sajana Wijesinghe",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",

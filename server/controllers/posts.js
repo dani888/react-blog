@@ -1,4 +1,5 @@
 import PostModel from "../models/Post.js";
+import _ from "lodash";
 
 export const getPosts = async (req, res) => {
   try {
@@ -20,4 +21,20 @@ export const createPost = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
+};
+
+export const getSinglePost = async (req, res) => {
+  const postTitle = _.lowerCase(req.params.topic);
+
+  PostModel.find({}, (err, postFound) => {
+    if (!err) {
+      postFound.forEach((element) => {
+        if (postTitle === _.lowerCase(element.title)) {
+          res.json(element);
+        } 
+      });
+    } else {
+      console.error(err);
+    }
+  });
 };

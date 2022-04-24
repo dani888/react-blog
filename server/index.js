@@ -18,7 +18,7 @@ app.use("/posts", postRoutes);
 
 mongoose
   .connect(connection_url, {
-    maxPoolSize: 50,
+    maxPoolSize: 100,
     wtimeoutMS: 2500,
   })
   .catch((err) => {
