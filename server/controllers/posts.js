@@ -27,14 +27,22 @@ export const getSinglePost = async (req, res) => {
   const postTitle = _.lowerCase(req.params.topic);
 
   PostModel.find({}, (err, postFound) => {
+    if (err) {
+      postFound.forEach((element) => {
+        if (postTitle != _.lowerCase(element.title)) {
+          res.json("Does not exist");
+        }
+      });
+    }
+  });
+
+  PostModel.find({}, (err, postFound) => {
     if (!err) {
       postFound.forEach((element) => {
         if (postTitle === _.lowerCase(element.title)) {
           res.json(element);
-        } 
+        }
       });
-    } else {
-      console.error(err);
     }
   });
 };
